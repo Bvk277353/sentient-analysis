@@ -22,7 +22,8 @@ VECTORIZER_PATH = os.path.join(
     BASE_DIR,
     "IMDB REVIEWS sentiment_vectorizer.pkl"
 )
-
+NLTK_DATA_DIR = os.path.join(BASE_DIR, "nltk_data")
+nltk.data.path.insert(0, NLTK_DATA_DIR)
 
 # --------------------------------------------------
 # NLTK
