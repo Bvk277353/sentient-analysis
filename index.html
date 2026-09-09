@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Project Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the clean, professional theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex-grow: 1;
+        }
+        /* Style for the placeholder banner image */
+        .banner-image {
+            height: 150px; /* Fixed height for the banner strip */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            filter: grayscale(10%) brightness(105%); /* Subtle effect for a clean, non-flashy look */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Banner Section -->
+    <header class="bg-gray-800 shadow-xl sticky top-0 z-10">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8 py-5 flex justify-between items-center">
+            <!-- Main Title -->
+            <div class="flex items-center space-x-3">
+                <h1 class="text-2xl font-bold text-white tracking-wider">Sentiment Analysis Dashboard</h1>
+            </div>
+            <!-- Subtitle/Project Info -->
+            <span class="text-sm text-gray-400 hidden sm:block">ML-Powered Feedback System | V1.0</span>
+        </div>
+    </header>
+
+    <!-- NEW BANNER IMAGE SECTION -->
+    <section class="w-full shadow-lg">
+        <img src="data.png" alt="Sentiment Analysis Banner" class="w-full banner-image">
+    </section>
+    <!-- END NEW BANNER IMAGE SECTION -->
+
+    <!-- Main Content Section -->
+    <main class="container py-16 px-6 sm:px-8 lg:px-8">
+        <div class="max-w-2xl mx-auto bg-white p-10 rounded-xl shadow-2xl border border-gray-100">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-8 border-b pb-4">Provide Feedback for Instant Analysis</h2>
+            
+            <form id="sentimentForm" class="space-y-8">
+                <!-- Text Input Area -->
+                <div>
+                    <label for="reviewText" class="block text-base font-medium text-gray-700 mb-3">Enter the comment or review text below:</label>
+                    <textarea id="reviewText" name="reviewText" rows="7" 
+                              class="w-full p-5 border border-gray-300 rounded-lg focus:ring-4 focus:ring-blue-200 focus:border-blue-600 transition duration-300 shadow-inner resize-none" 
+                              placeholder="Type your feedback here (e.g., 'I was completely satisfied with the product quality and fast delivery.')."></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="flex justify-end">
+                    <button type="submit" id="submitButton"
+                            class="px-8 py-3 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-105">
+                        <span id="buttonText">Analyze Sentiment</span>
+                        <svg id="buttonSpinner" class="animate-spin -mr-1 ml-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Result Display Area -->
+            <div id="resultArea" class="mt-10 pt-6 border-t border-gray-200 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Sentiment Result</h3>
+                <div id="resultMessage" class="p-5 rounded-xl text-xl font-extrabold border-l-4 shadow-md">
+                    <!-- Result will be inserted here -->
+                </div>
+            </div>
+            
+            <!-- Error/Empty Input Message -->
+            <div id="errorMessage" class="mt-4 p-4 bg-red-50 border border-red-300 text-red-700 rounded-lg hidden font-medium">
+                ⚠️ Input Required: Please enter some text to run the analysis.
+            </div>
+        </div>
+        
+        <!-- Explanation Box -->
+        <div class="max-w-2xl mx-auto mt-8 p-6 bg-blue-50 rounded-xl shadow-inner border border-blue-200">
+            <h3 class="text-md font-semibold text-blue-800 mb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                </svg>
+                Project Information
+            </h3>
+            <p class="text-sm text-blue-700">
+                This interface sends your text to the Flask API running on your local machine. The API then uses your pre-trained ML model and vectorizer to classify the sentiment.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-700 mt-auto border-t-4 border-blue-500">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8 py-5 text-center">
+            <p class="text-sm text-gray-300">
+                &copy; 2025-26,   22481A4234(L),   22481A4208,    22481A4230,   23485A4201 of TEAM A3. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic (No changes here, remains connected to app.py) -->
+    <script>
+        // DOM Element References
+        const form = document.getElementById('sentimentForm');
+        const reviewText = document.getElementById('reviewText');
+        const submitButton = document.getElementById('submitButton');
+        const buttonText = document.getElementById('buttonText');
+        const buttonSpinner = document.getElementById('buttonSpinner');
+        const resultArea = document.getElementById('resultArea');
+        const resultMessage = document.getElementById('resultMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // *** ENDPOINT CONFIGURATION ***
+        const API_ENDPOINT = 'http://127.0.0.1:5000/analyze_sentiment';
+        // ******************************
+
+
+        /**
+         * The function to make the real API call to the Flask backend.
+         */
+        async function analyzeSentiment(text) {
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ comment: text }) 
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ error: 'Unknown server error' }));
+                    console.error('API Error:', errorData.error);
+                    throw new Error(`Server Error: ${errorData.error || response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.sentiment; 
+
+            } catch (error) {
+                console.error('Connection Error:', error);
+                return 'ERROR'; 
+            }
+        }
+
+        /**
+         * Updates the UI to show the analysis result.
+         */
+        function displayResult(sentiment) {
+            resultArea.classList.remove('hidden');
+            let message = '';
+            let classes = 'border-l-4 '; 
+            resultMessage.classList.value = ''; 
+
+            switch (sentiment.toLowerCase()) {
+                case 'positive':
+                    message = '✅ <span class="text-green-800">POSITIVE SENTIMENT DETECTED</span>';
+                    classes += 'bg-green-100 border-green-600 text-green-700';
+                    break;
+                case 'negative':
+                    message = '❌ <span class="text-red-800">NEGATIVE SENTIMENT DETECTED</span>';
+                    classes += 'bg-red-100 border-red-600 text-red-700';
+                    break;
+                case 'error':
+                    message = '⚠️ <span class="text-yellow-800">Connection Failed or Model Not Loaded.</span>';
+                    classes += 'bg-yellow-100 border-yellow-600 text-yellow-700';
+                    break;
+                default:
+                    message = `💬 <span class="text-blue-800">RESULT: ${sentiment.toUpperCase()}</span>`;
+                    classes += 'bg-blue-100 border-blue-600 text-blue-700';
+                    break;
+            }
+
+            resultMessage.innerHTML = message;
+            resultMessage.classList.add(...classes.split(' '), 'p-5', 'rounded-xl', 'text-xl', 'font-extrabold', 'shadow-md');
+        }
+
+        // Event Listener for Form Submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            const text = reviewText.value.trim();
+
+            if (text === '') {
+                errorMessage.classList.remove('hidden');
+                resultArea.classList.add('hidden');
+                return;
+            }
+            errorMessage.classList.add('hidden');
+
+            // Set UI to Loading State
+            submitButton.disabled = true;
+            buttonText.textContent = 'Analyzing...';
+            buttonSpinner.classList.remove('hidden');
+            resultArea.classList.add('hidden'); 
+
+            // Perform Sentiment Analysis
+            const sentiment = await analyzeSentiment(text);
+
+            // Update UI with Result
+            displayResult(sentiment);
+
+            // Reset UI State
+            submitButton.disabled = false;
+            buttonText.textContent = 'Analyze Sentiment';
+            buttonSpinner.classList.add('hidden');
+        });
+    </script>
+
+</body>
+</html>
