@@ -192,9 +192,7 @@ def analyze_sentiment():
 
 
         sentiment = (
-            "Positive"
-            if prediction == 1
-            else "Negative"
+             str(prediction).capitalize()
         )
 
 
