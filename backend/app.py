@@ -191,12 +191,11 @@ def analyze_sentiment():
         prediction = model.predict(features)[0]
 
 
-        sentiment = 
-             str(prediction).capitalize()
+        sentiment = str(prediction).capitalize()
         
 
         prediction = model.predict(features)[0]
-decision = model.decision_function(features)[0]
+        decision = model.decision_function(features)[0]
 
 
 
