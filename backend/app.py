@@ -191,9 +191,22 @@ def analyze_sentiment():
         prediction = model.predict(features)[0]
 
 
-        sentiment = (
+        sentiment = 
              str(prediction).capitalize()
-        )
+        
+
+        prediction = model.predict(features)[0]
+decision = model.decision_function(features)[0]
+
+print("===================================")
+print("INPUT:", comment)
+print("PROCESSED:", processed_text)
+print("PREDICTION:", prediction)
+print("DECISION:", decision)
+print("MODEL CLASSES:", model.classes_)
+print("NONZERO FEATURES:", features.nnz)
+print("===================================")
+
 
 
         return jsonify({
